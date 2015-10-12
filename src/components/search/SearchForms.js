@@ -116,6 +116,8 @@ var SearchForms = React.createClass({
               </p>
             </div>
 		      </div>
+          <div className="row">
+          </div>
 					</div>
 				</div>
 			</div>
