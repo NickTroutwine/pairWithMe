@@ -1,21 +1,23 @@
-var watchify = require('watchify');
-var browserify = require('browserify');
-var gulp = require('gulp');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var gutil = require('gulp-util');
-var sourcemaps = require('gulp-sourcemaps');
-var assign = require('lodash.assign');
-var nodemon = require('gulp-nodemon');
-var reactify = require('reactify');
-var babelify = require('babelify');
-var spawn = require('child_process').spawn;
-var async = require( 'async' );
-var path = require('path');
-var concat = require('gulp-concat');
-var minifyCSS = require('gulp-minify-css');
-var rename = require('gulp-rename');
-var node;
+var watchify = require('watchify'),
+  browserify = require('browserify'),
+  gulp = require('gulp'),
+  source = require('vinyl-source-stream'),
+  buffer = require('vinyl-buffer'),
+  gutil = require('gulp-util'),
+  uglify = require('gulp-uglify'),
+  gzip = require('gulp-gzip'),
+  sourcemaps = require('gulp-sourcemaps'),
+  assign = require('lodash.assign'),
+  nodemon = require('gulp-nodemon'),
+  reactify = require('reactify'),
+  babelify = require('babelify'),
+  spawn = require('child_process').spawn,
+  async = require( 'async' ),
+  path = require('path'),
+  concat = require('gulp-concat'),
+  minifyCSS = require('gulp-minify-css'),
+  rename = require('gulp-rename'),
+  node;
 
 var customOpts = {
   entries: ['./src/index.js'],
@@ -43,6 +45,8 @@ function bundle() {
     // optional, remove if you dont want sourcemaps
     .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
     // Add transformation tasks to the pipeline here.
+    .pipe(uglify())
+    .pipe(gzip())
     .pipe(sourcemaps.write('./')) // writes .map file
     .pipe(gulp.dest('./client/build/'));
 }
@@ -60,10 +64,11 @@ gulp.task('css', function () {
     .pipe(concat('style.css'))
     .pipe(minifyCSS())
     .pipe(rename('style.min.css'))
+    .pipe(gzip())
     .pipe(gulp.dest('./client/css/'));
 });
 gulp.task('css:watch', function () {
   gulp.watch('./src/styles/*.css', ['css']);
 });
-// call all tasks and start server on port 3000
+// call all tasks and start server on port 80
 gulp.task('default', ['js', 'css', 'css:watch', 'server']);

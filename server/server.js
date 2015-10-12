@@ -1,5 +1,7 @@
- var express = require('express'),
+ var compression = require('compression'),
+  express = require('express'),
   app = express(),
+  morgan = require('morgan'),
   session = require('express-session'),
   Sequelize = require('sequelize'),
   http = require('http'),
@@ -10,6 +12,7 @@
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
   express = require('express');
+
 
 /*Connects to Database via sequalize ORM */
 sequelize = new Sequelize(process.env.DATABASE || config.get('database.database'), process.env.DATABASE_USER || config.get('database.user'), process.env.DATABASE_PASSWORD || config.get('database.password'), {
@@ -48,6 +51,10 @@ var TagController = require('./db_models/tagController.js');
 var ProjectController = require('./db_models/projectController.js');
 var ControllerDirector = require('./db_models/controllerDirector.js');
 
+// compress all requests
+app.use(compression());
+// log all http requests
+app.use(morgan('combined'))
 /* Setting up middleware */
 app.use('/', express.static(__dirname + '/../client'));
 app.use(cookieParser());
@@ -59,15 +66,15 @@ app.use(session({
 app.use(passport.initialize()); //middleware to start passport
 app.use(passport.session()); //used for persisten login
 
-/** loading home page */
+// loading home page
 app.get('/', function(req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/index.html'));
 });
-/** request for login, redirects to github.com */
+// request for login, redirects to github.com
 app.get('/auth/github', passport.authenticate('github'), function(req,res) {
   //request will redirect to Githib for authentication
 });
-/** authenticates callback */
+// authenticates callback
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), UserController.signIn);
 
 app.post('/updateProfile', UserController.updateProfile);
@@ -98,6 +105,10 @@ app.get('/logout', function (req, res) {
   res.clearCookie('token');
   req.logout();
   res.redirect('/');
+})
+
+app.get('/google81294c5074b32aac.html', function (req, res) {
+  res.sendFile(path.resolve(__dirname + './google81294c5074b32aac.html'));
 })
 
 /* This is our initial get request for our html and allows us to remove the #
