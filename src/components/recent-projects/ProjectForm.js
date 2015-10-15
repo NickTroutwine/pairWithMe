@@ -80,7 +80,7 @@ var ProjectForm = React.createClass({
 					<div className="row">
 						<div className="form-group col-xs-8 col-xs-offset-2 col-sm-8 text-center">
 							<label htmlFor="ghlink">GitHubLink</label>
-							<input  type="text" className="form-control" value={this.state.github} placeholder="ghlink" onChange={this.onChangeGithub} id="GitHubLink"/>
+							<input  type="text" className="form-control" value={this.state.github} placeholder="Github link" onChange={this.onChangeGithub} id="GitHubLink"/>
 						</div>
 					</div>
 					<div className="row">
@@ -98,7 +98,7 @@ var ProjectForm = React.createClass({
 					<div className="row">
 						<div className="form-group col-xs-8 col-xs-offset-2 col-sm-8 text-center">
 						  <label htmlFor="learns">What we learned</label>
-						  <textarea required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,500}$" className="form-control" row="3" value={this.state.learn} placeholder="What we Learned" onChange={this.onChangeLearn} id="learns"></textarea>
+						  <textarea required pattern="^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*{1,500}$" className="form-control" row="3" value={this.state.learn} placeholder="What we Learned" onChange={this.onChangeLearn} id="learns"></textarea>
 						</div>
 					</div>
 					<div className="row">

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // var React = require('react');
 // var Select = require('react-select');
 

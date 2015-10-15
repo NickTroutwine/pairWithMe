@@ -17,7 +17,7 @@ var Home = React.createClass({
 		// maps out the project info to properly display each item in the array of projects by sending to Projects component
 		// slices the characers to 17 characters to keep size management 
 		var projectList = this.state.projects.map(function(element, index){
-			return (<Projects className="col-xs-12 col-md-4" title={element.projectName.slice(0,17)} description={element.description.slice(0,17)} tools={element.tools.slice(0,17)} route={element.id} key={index}/>)
+			return (<Projects className="col-xs-12 col-sm-12 col-md-4" title={element.projectName.slice(0,20)} description={element.description.slice(0,20)} tools={element.tools.slice(0,20)} route={element.id} key={index}/>)
 		});
 		return (
 		<div>
