@@ -1,7 +1,7 @@
 var React = require('react');
 var Select = require('react-select');
 var SearchResults = require('./SearchResults.js');
-var AllUsers = require('./AllUsers.js');
+// var AllUsers = require('./AllUsers.js');
 var partner = [
   { value: 'Collaborator', label: 'Partner' },
   { value: 'Student', label: 'Student' },
@@ -116,6 +116,7 @@ var SearchForms = React.createClass({
               </p>
             </div>
           </div>
+
           </div>
         </div>
       </div>
