@@ -1,7 +1,7 @@
 var React = require('react');
 var Select = require('react-select');
 var SearchResults = require('./SearchResults.js');
-// var AllUsers = require('./AllUsers.js');
+var AllUsers = require('./AllUsers.js');
 var partner = [
   { value: 'Collaborator', label: 'Partner' },
   { value: 'Student', label: 'Student' },
@@ -102,9 +102,12 @@ var SearchForms = React.createClass({
                     <p>
                       <input type="submit" value="SUBMIT"  name="submit" className="btn btn-primary btn-lg btn-block" />
                     </p>
-              </div>
+                  </div>
                 </div>
               </form>
+         <div>
+          {AllUsers}
+          </div>
             </div>
           </div>
           <div className="row">
