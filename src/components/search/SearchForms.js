@@ -69,7 +69,7 @@ var SearchForms = React.createClass({
       <div className="row">
         <div className="col-xs-12">
         <div className="col-xs-10 col-xs-offset-1 bordered-box">
-        <h3 className="text-center">Search For Partners</h3>
+        <h3 className="text-center">Sear For Partners</h3>
           <div className="row">
             <div className="col-xs-8 col-xs-offset-2">
               <form id="searchForm" encType="multipart/form-data" onSubmit={this.handle} className="form-inline">
@@ -104,10 +104,12 @@ var SearchForms = React.createClass({
                     </p>
                   </div>
                 </div>
+                 <div className ="row">
+                 <p>Plaease show up</p>
+                  {AllUsers}
+                  </div>                
               </form>
-         <div>
-          {AllUsers}
-          </div>
+
             </div>
           </div>
           <div className="row">
