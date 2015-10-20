@@ -8,7 +8,7 @@ getInitialState: function() {
 	};
 },
 onChangeOption: function(){
-	window.location.pathname = '/profile/'+ this.props.route;
+	window.location.pathname = '/profile/'+ this.state.options;
 },
 componentDidMount: function() {
 	$.getJSON('/api/users', function(result) {
@@ -20,12 +20,12 @@ componentDidMount: function() {
   },
 	render: function() {
 		return (
-			<div className="row">
-			<form>
-				<div className="form-group col-xs-8 col-xs-offset-2 col-sm-8 text-center">
-					<label>All Users</label>
-					<Select name="form-field-name" required pattern="^[a-zA-Z][a-zA-Z0-9\.]{1,50}$" options={this.state.options}  onChange={this.onChangeOption} className="text-left" />
-				</div>
+			<div>
+				<form>
+					<div className="form-group col-xs-8 col-xs-offset-2 col-sm-8 text-center">
+						<label>All Users</label>
+						<Select name="form-field-name" options={this.state.options} onChange={this.onChangeOption} className="text-left"/>
+					</div>
 			</form>
 			</div>
 		);
