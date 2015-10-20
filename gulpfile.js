@@ -45,9 +45,9 @@ function bundle() {
     // optional, remove if you dont want sourcemaps
     .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
     // Add transformation tasks to the pipeline here.
-    // .pipe(uglify())
-    // .pipe(gzip())
-    // .pipe(sourcemaps.write('./')) // writes .map file
+    .pipe(uglify())
+    .pipe(gzip())
+    .pipe(sourcemaps.write('./')) // writes .map file
     .pipe(gulp.dest('./client/build/'));
 }
 var child = require('child_process');
@@ -64,7 +64,7 @@ gulp.task('css', function () {
     .pipe(concat('style.css'))
     .pipe(minifyCSS())
     .pipe(rename('style.min.css'))
-    // .pipe(gzip())
+    .pipe(gzip())
     .pipe(gulp.dest('./client/css/'));
 });
 gulp.task('css:watch', function () {
